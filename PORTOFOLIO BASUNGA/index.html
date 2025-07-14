@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio Multilingue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7e22ce;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            transition: background-color 0.4s ease;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            margin-bottom: 3rem;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 15px 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            display: flex;
+            gap: 10px;
+            margin-left: 30px;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(241,245,249,0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        .hero-btns .btn {
+            margin-right: 15px;
+        }
+
+        /* About Section */
+        .about {
+            background-color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .skills {
+            margin-top: 30px;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .portfolio-img {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(37, 99, 235, 0.9);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info {
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 250px;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                padding: 40px 0;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 30px;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .hero-btns {
+                display: flex;
+                justify-content: center;
+            }
+
+            .lang-selector {
+                margin-left: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .hero-btns .btn {
+                margin-bottom: 15px;
+                margin-right: 0;
+                display: block;
+                width: 100%;
+                max-width: 250px;
+                margin: 0 auto 15px;
+            }
+
+            .lang-selector {
+                position: absolute;
+                top: 20px;
+                right: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Portfólio<span>Pessoal</span></a>
+                <ul class="nav-links">
+                    <li><a href="#hero" class="active" data-lang="nav-home">Accueil</a></li>
+                    <li><a href="#about" data-lang="nav-about">À propos</a></li>
+                    <li><a href="#services" data-lang="nav-services">Services</a></li>
+                    <li><a href="#portfolio" data-lang="nav-portfolio">Portfolio</a></li>
+                    <li><a href="#contact" data-lang="nav-contact">Contact</a></li>
+                </ul>
+                <div class="lang-selector">
+                    <button class="lang-btn active" data-lang="fr">FR</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="pt">PT</button>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-lang="hero-title">Bonjour, je suis <span style="color: var(--primary);">Basunga Lutumba K. Jeremias</span></h1>
+                <p data-lang="hero-subtitle">Technicien Informatique – Développement Web & Support Numérique</p>
+                <div class="hero-btns">
+                    <a href="#portfolio" class="btn" data-lang="hero-btn1">Voir mon travail</a>
+                    <a href="#contact" class="btn btn-outline" data-lang="hero-btn2">Me contacter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="about-title">À propos de moi</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="1.JPG" alt="Basunga Lutumba K. Jeremias">
+                </div>
+                <div class="about-text">
+                    <h3 data-lang="about-subtitle">Technicien Informatique | Développeur Web Débutant | Photographe & Monteur Vidéo</h3>
+                    <p data-lang="about-text1">Diplômé en sciences informatiques avec une grande passion pour la technologie et la création numérique. Intéressé par le développement web, la photographie et le montage vidéo. J’aime apprendre en continu, résoudre des problèmes et travailler de manière autonome sur des projets créatifs et techniques.</p>
+                    <p data-lang="about-text2">Je privilégie une approche centrée sur la curiosité, l’adaptabilité et l’apprentissage continu. Dans chaque projet, je m’efforce de combiner rigueur technique et créativité visuelle, que ce soit en développement web, en photographie ou en montage vidéo.</p>
+                    
+                   
+                    
+                    <a href="basunga lutumba jeremias CV.pdf" class="btn" style="margin-top: 30px;" data-lang="about-btn">Télécharger mon CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="services-title">Mes Services</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa fa-gears"></i>
+                    </div>
+                    <h3 data-lang="service1-title">Maintenance informatique & sécurité</h3>
+                    <p data-lang="service1-desc">Diagnostic et réparation matériel/logiciel Mise en place d’infrastructures informatiques sécurisées Prévention et gestion des risques informatiques Un plus dans toute entreprise qui veut éviter les pannes critiques et protéger ses données.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 data-lang="service2-title">Développement web de base</h3>
+                    <p data-lang="service2-desc">Création de pages HTML/CSS simples et efficaces,Optimisation de l’ergonomie et de la lisibilité,..</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa fa-map-pin"></i>
+                    </div>
+                    <h3 data-lang="service3-title">Veille technologique et innovation</h3>
+                    <p data-lang="service3-desc">Expérimentation de nouvelles solutions pour améliorer les processus internes,Proposition d’outils ou de technologies adaptées aux besoins de l’entreprise,...</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3 data-lang="service4-title">Création de contenus visuels professionnels</h3>
+                    <p data-lang="service4-desc">Création de campagnes pour les réseaux sociaux,Design graphique adapté aux réseaux,Planification et stratégie de diffusion,...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="portfolio-title">Mon Portfolio</h2>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="VENDAJA.jpeg" alt="Projet VendaJá">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 data-lang="project1-title">VendaJá – Site web de petites annonces</h3>
+                        <p data-lang="project1-desc">Développement d’un site web responsive et multilingue (PT/EN) permettant la publication et la consultation d’annonces (vente, location, services, etc.). Fonctionnalités prévues : inscription, formulaire de publication, filtres de recherche, navigation par catégories.</p>
+                        <a href="#" class="btn btn-outline" data-lang="project-btn">Voir le projet</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="BUBMA.jpeg" alt="Application Fintech">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 data-lang="project2-title"> Bumba – Plateforme d’offres d’emploi</h3>
+                        <p data-lang="project2-desc">Création d’une plateforme d’emploi multilingue (FR/EN/PT) avec interface utilisateur simple, tableau d’administration et filtres par catégories. Fonctionnalités prévues : création d’annonces par les employeurs, gestion des rôles, export CSV, recherche avancée.</p>
+                        <a href="#" class="btn btn-outline" data-lang="project-btn">Voir le projet</a>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-img">
+                        <img src="PORTOFOLIO.jpeg" alt="Réseau Social">
+                    </div>
+                    <div class="portfolio-overlay">
+                        <h3 data-lang="project3-title">Mon portfolio</h3>
+                        <p data-lang="project3-desc">site d'experience</p>
+                        <a href="#" class="btn btn-outline" data-lang="project-btn">Voir le projet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2 data-lang="contact-title">Contactez-moi</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 data-lang="contact-info">Informations de contact</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4 data-lang="contact-location">Localisation</h4>
+                            <p>Rua de sao,Cuca/Cazenga</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4 data-lang="contact-email">Email</h4>
+                            <p>basunglutumbajeremias@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4 data-lang="contact-phone">Téléphone</h4>
+                            <p>+244 947 706 475 / 955 678 649</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3 data-lang="contact-form-title">Envoyez un message</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="" required data-lang="form-name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="" required data-lang="form-email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="" required data-lang="form-subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="" required data-lang="form-message"></textarea>
+                        </div>
+                        <button type="submit" class="btn" data-lang="form-submit">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>BasungaLutumba K. Jeremias</h3>
+                    <p data-lang="footer-desc">Technicien Informatique – Développement Web & Support Numérique</p>
+                    <div class="social-links">
+                        <a href="www.linkedin.com/in/ basunga-jermias"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/R-basunga"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/Remi_bas"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 data-lang="footer-links">Liens Rapides</h3>
+                    <ul class="footer-links">
+                        <li><a href="#hero" data-lang="nav-home">Accueil</a></li>
+                        <li><a href="#about" data-lang="nav-about">À propos</a></li>
+                        <li><a href="#services" data-lang="nav-services">Services</a></li>
+                        <li><a href="#portfolio" data-lang="nav-portfolio">Portfolio</a></li>
+                        <li><a href="#contact" data-lang="nav-contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 data-lang="footer-services">Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-lang="service1-title">Développement Web</a></li>
+                        <li><a href="#" data-lang="service2-title">Applications Mobile</a></li>
+                        <li><a href="#" data-lang="service3-title">UI/UX Design</a></li>
+                        <li><a href="#" data-lang="service4-title">SEO Optimization</a></li>
+                        <li><a href="#" data-lang="service5-title">Consulting</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Basunga Lutumba K. Jeremias <span data-lang="footer-rights">Tous droits réservés</span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Système de traduction
+        const translations = {
+            fr: {
+                // Navigation
+                "nav-home": "Accueil",
+                "nav-about": "À propos",
+                "nav-services": "Services",
+                "nav-portfolio": "Portfolio",
+                "nav-contact": "Contact",
+                
+                // Hero
+                "hero-title": "Bonjour, je suis <span style=\"color: var(--primary);\">Basunga Lutumba K. Jeremias</span>",
+                "hero-subtitle": "Technicien Informatique – Développement Web & Support Numérique",
+                "hero-btn1": "Voir mon travail",
+                "hero-btn2": "Me contacter",
+                
+                // About
+                "about-title": "À propos de moi",
+                "about-subtitle": "Technicien Informatique | Développeur Web Débutant | Photographe & Monteur Vidéo",
+                "about-text1": "Diplômé en sciences informatiques avec une grande passion pour la technologie et la création numérique. Intéressé par le développement web, la photographie et le montage vidéo. J’aime apprendre en continu, résoudre des problèmes et travailler de manière autonome sur des projets créatifs et techniques.",
+                "about-text2": "Je privilégie une approche centrée sur la curiosité, l’adaptabilité et l’apprentissage continu. Dans chaque projet, je m’efforce de combiner rigueur technique et créativité visuelle, que ce soit en développement web, en photographie ou en montage vidéo.",
+                "skill1": "Développement Frontend",
+                "skill2": "Développement Backend",
+                "skill3": "UI/UX Design",
+                "about-btn": "Télécharger mon CV",
+                
+                // Services
+                "services-title": "Mes Services",
+                "service1-title": "Maintenance informatique & sécurité",
+                "service1-desc": "Diagnostic et réparation matériel/logiciel Mise en place d’infrastructures informatiques sécurisées Prévention et gestion des risques informatiques Un plus dans toute entreprise qui veut éviter les pannes critiques et protéger ses données.",
+                "service2-title": "Développement web de base",
+                "service2-desc": "Création de pages HTML/CSS simples et efficaces,Optimisation de l’ergonomie et de la lisibilité,..",
+                "service3-title": "Veille technologique et innovation",
+                "service3-desc": "Expérimentation de nouvelles solutions pour améliorer les processus internes,Proposition d’outils ou de technologies adaptées aux besoins de l’entreprise,...",
+                "service4-title": "Création de contenus visuels professionnels",
+                "service4-desc": "Création de campagnes pour les réseaux sociaux,Design graphique adapté aux réseaux,Planification et stratégie de diffusion,...",
+                "service5-title": "Consulting",
+                
+                // Portfolio
+                "portfolio-title": "Mon Portfolio",
+                "project1-title": "Plateforme E-commerce",
+                "project1-desc": "Application complète avec système de paiement et tableau de bord administrateur",
+                "project2-title": "Application Fintech",
+                "project2-desc": "Solution de gestion financière avec visualisation de données en temps réel",
+                "project3-title": "Réseau Social Éducatif",
+                "project3-desc": "Plateforme de partage de connaissances pour étudiants et enseignants",
+                "project-btn": "Voir le projet",
+                
+                // Contact
+                "contact-title": "Contactez-moi",
+                "contact-info": "Informations de contact",
+                "contact-location": "Localisation",
+                "contact-email": "Email",
+                "contact-phone": "Téléphone",
+                "contact-form-title": "Envoyez un message",
+                "form-name": "Votre nom",
+                "form-email": "Votre email",
+                "form-subject": "Sujet",
+                "form-message": "Votre message",
+                "form-submit": "Envoyer le message",
+                
+                // Footer
+                "footer-desc": "Technicien Informatique – Développement Web & Support Numérique",
+                "footer-links": "Liens Rapides",
+                "footer-services": "Services",
+                "footer-rights": "Tous droits réservés"
+            },
+            en: {
+                // Navigation
+                "nav-home": "Home",
+                "nav-about": "About",
+                "nav-services": "Services",
+                "nav-portfolio": "Portfolio",
+                "nav-contact": "Contact",
+                
+                // Hero
+                "hero-title": "Hello, I'm <span style=\"color: var(--primary);\">Basunga Lutumba K. Jeremias</span>",
+                "hero-subtitle": "IT Technician – Web Development & Digital Support",
+                "hero-btn1": "View my work",
+                "hero-btn2": "Contact me",
+                
+                // About
+                "about-title": "About Me",
+                "about-subtitle": "IT Technician | Junior Web Developer | Photographer & Video Editor",
+                "about-text1": "Graduate in Computer Science with a strong passion for technology and digital creation. Interested in web development, photography, and video editing. I enjoy continuous learning, solving problems, and working independently on both creative and technical projects.",
+                "about-text2": "My approach blends curiosity, autonomy, and continuous learning. In every project, I aim to combine technical accuracy with visual creativity — whether in web development, photography, or video editing.",
+                "skill1": "Frontend Development",
+                "skill2": "Backend Development",
+                "skill3": "UI/UX Design",
+                "about-btn": "Download my CV",
+                
+                // Services
+                "services-title": "My Services",
+                "service1-title": "IT Maintenance and Security",
+                "service1-desc": "Diagnosis and repair of hardware/software,Implementation of secure IT infrastructures,Risk prevention and management ➡️ A major asset for any company that aims to avoid critical failures and protect its data.",
+                "service2-title": "Basic Web Development",
+                "service2-desc": "Creating simple and effective pages using HTML/CSS,Optimizing user experience and readability,...",
+                "service3-title": "Technology Monitoring and Innovation",
+                "service3-desc": "Experimenting with new tools to improve internal processes,Recommending technologies tailored to company needs,...",
+                "service4-title": "Professional Visual Content Creation",
+                "service4-desc": "Social media campaign creation,Graphic design tailored for social platforms,Content scheduling and strategy planning,...",
+                "service5-title": "Consulting",
+                
+                // Portfolio
+                "portfolio-title": "My Portfolio",
+                "project1-title": "E-commerce Platform",
+                "project1-desc": "Complete application with payment system and admin dashboard",
+                "project2-title": "Fintech Application",
+                "project2-desc": "Financial management solution with real-time data visualization",
+                "project3-title": "Educational Social Network",
+                "project3-desc": "Knowledge sharing platform for students and teachers",
+                "project-btn": "View project",
+                
+                // Contact
+                "contact-title": "Contact Me",
+                "contact-info": "Contact Information",
+                "contact-location": "Location",
+                "contact-email": "Email",
+                "contact-phone": "Phone",
+                "contact-form-title": "Send a message",
+                "form-name": "Your name",
+                "form-email": "Your email",
+                "form-subject": "Subject",
+                "form-message": "Your message",
+                "form-submit": "Send message",
+                
+                // Footer
+                "footer-desc": "IT Technician – Web Development & Digital Support",
+                "footer-links": "Quick Links",
+                "footer-services": "Services",
+                "footer-rights": "All rights reserved"
+            },
+            pt: {
+                // Navigation
+                "nav-home": "Início",
+                "nav-about": "Sobre",
+                "nav-services": "Serviços",
+                "nav-portfolio": "Portfólio",
+                "nav-contact": "Contato",
+                
+                // Hero
+                "hero-title": "Olá, eu sou <span style=\"color: var(--primary);\">Basunga Lutumba K. Jeremias</span>",
+                "hero-subtitle": "Técnico de Informática – Desenvolvimento Web & Suporte Digital",
+                "hero-btn1": "Ver meu trabalho",
+                "hero-btn2": "Entrar em contato",
+                
+                // About
+                "about-title": "Sobre Mim",
+                "about-subtitle": "Técnico Informático | Desenvolvedor Web Iniciante | Fotógrafo & Editor de Vídeo",
+                "about-text1": "Sou um desenvolvedor full stack apaixonado por criar soluções web inovadoras e de alto desempenho. Especializado em JavaScript moderno (React, Vue, Node.js), transformo ideias complexas em interfaces elegantes e intuitivas.",
+                "about-text2": "Minha abordagem combina curiosidade, autonomia e aprendizado contínuo. Em cada projeto, busco unir precisão técnica e criatividade visual, seja no desenvolvimento web, na fotografia ou na edição de vídeo.",
+                "skill1": "Desenvolvimento Frontend",
+                "skill2": "Desenvolvimento Backend",
+                "skill3": "UI/UX Design",
+                "about-btn": "Baixar meu CV",
+                
+                // Services
+                "services-title": "Meus Serviços",
+                "service1-title": "Manutenção informática e segurança",
+                "service1-desc": "Diagnóstico e reparação de hardware/software,Implementação de infraestruturas informáticas seguras,Prevenção e gestão de riscos tecnológicos ➡️ Um diferencial para qualquer empresa que deseja evitar falhas críticas e proteger os seus dados.,..",
+                "service2-title": "Desenvolvimento web básicoAplicativos Móveis",
+                "service2-desc": "Criação de páginas simples e eficazes em HTML/CSS,Otimização da ergonomia e da legibilidade,..",
+                "service3-title": "Monitoramento tecnológico e inovação",
+                "service3-desc": "Experimentação de novas soluções para melhorar os processos internos,Proposição de ferramentas ou tecnologias adaptadas às necessidades da empresa,..",
+                "service4-title": "Criação de conteúdos visuais profissionais",
+                "service4-desc": "Criação de campanhas para redes sociais,Design gráfico adaptado às redes sociais,Planejamento e estratégia de publicação,...",
+                "service5-title": "Consultoria",
+                
+                // Portfolio
+                "portfolio-title": "Meu Portfólio",
+                "project1-title": "Plataforma E-commerce",
+                "project1-desc": "Aplicativo completo com sistema de pagamento e painel de administração",
+                "project2-title": "Aplicativo Fintech",
+                "project2-desc": "Solução de gestão financeira com visualização de dados em tempo real",
+                "project3-title": "Rede Social Educacional",
+                "project3-desc": "Plataforma de compartilhamento de conhecimento para estudantes e professores",
+                "project-btn": "Ver projeto",
+                
+                // Contact
+                "contact-title": "Entre em Contato",
+                "contact-info": "Informações de Contato",
+                "contact-location": "Localização",
+                "contact-email": "Email",
+                "contact-phone": "Telefone",
+                "contact-form-title": "Envie uma mensagem",
+                "form-name": "Seu nome",
+                "form-email": "Seu email",
+                "form-subject": "Assunto",
+                "form-message": "Sua mensagem",
+                "form-submit": "Enviar mensagem",
+                
+                // Footer
+                "footer-desc": "Técnico de Informática – Desenvolvimento Web & Suporte Digital",
+                "footer-links": "Links Rápidos",
+                "footer-services": "Serviços",
+                "footer-rights": "Todos os direitos reservados"
+            }
+        };
+
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a nav link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Language System
+        function changeLanguage(lang) {
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update all elements with data-lang-key attribute
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.dataset.lang;
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        // Special handling for hero title which contains HTML
+                        if (key === 'hero-title') {
+                            element.innerHTML = translations[lang][key];
+                        } else {
+                            element.textContent = translations[lang][key];
+                    }
+                }
+            }
+      });
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+
+        // Language button event listeners
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                changeLanguage(lang);
+                
+                // Save language preference
+                localStorage.setItem('portfolio-lang', lang);
+            });
+        });
+
+        // Set initial language
+        const savedLang = localStorage.getItem('portfolio-lang') || 'fr';
+        changeLanguage(savedLang);
+    </script>
+</body>
+</html>
